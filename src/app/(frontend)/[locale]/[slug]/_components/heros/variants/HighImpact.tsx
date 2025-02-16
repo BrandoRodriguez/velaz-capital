@@ -7,12 +7,10 @@ import { Media } from '@/components/ui/media'
 import RichText from '@/components/rich-text'
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-
-
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaDesktop, mediaMobile }) => {
 
  const sm = useMediaQuery("(min-width: 40rem)");
- //hello
+
  return (
   <section className="hero">
    <div className="container mx-auto sm:mt-50 z-10 ">
@@ -33,7 +31,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
      </div>
     </div>
    </div>
-   <div className="min-h-screen">
+   <div className="h-dvh">
     <React.Fragment>
      <Media fill imgClassName="-z-10 object-cover bg-top" priority resource={sm ? mediaDesktop ?? '' : mediaMobile ?? ''} />
     </React.Fragment>

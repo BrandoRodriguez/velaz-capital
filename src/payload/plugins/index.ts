@@ -1,5 +1,5 @@
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+// import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
@@ -52,9 +52,7 @@ const plugins: Plugin[] = [
       },
     },
   }),
-  payloadCloudPlugin(
-
-  ),
+  // payloadCloudPlugin(),
   vercelBlobStorage({
     collections: {
       media: true,
