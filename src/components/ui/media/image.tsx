@@ -8,9 +8,13 @@ import React from 'react'
 
 import type { Props as MediaProps } from './types'
 
-// import cssVariables from '@/cssVariables'
-
-// const { breakpoints } = cssVariables
+const breakpoints = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  '2xl': 1536,
+}
 
 export const ImageMedia: React.FC<MediaProps> = (props) => {
   const {
@@ -46,13 +50,13 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     alt = altFromResource
     src = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`
   }
-  //
-  // NOTE: this is used by the browser to determine which image to download at different screen sizes
-  // const sizes = sizeFromProps
-  //   ? sizeFromProps
-  //   : Object.entries(breakpoints)
-  //     .map(([, value]) => `(max-width: ${value}px) ${value}px`)
-  //     .join(', ')
+
+  //NOTE: this is used by the browser to determine which image to download at different screen sizes
+  const sizes = sizeFromProps
+    ? sizeFromProps
+    : Object.entries(breakpoints)
+      .map(([, value]) => `(max-width: ${value}px) ${value}px`)
+      .join(', ')
 
   return (
     <NextImage
@@ -69,8 +73,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
       }}
       priority={priority}
       quality={100}
-      // style={{ display: isLoading ? 'none' : 'block' }}
-      // sizes={sizes}
+      sizes={sizes}
       src={src}
       width={!fill ? width : undefined}
     />
