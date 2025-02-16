@@ -12,7 +12,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaDesktop, mediaMobile }) => {
 
  const sm = useMediaQuery("(min-width: 40rem)");
-
+ //hello
  return (
   <section className="hero">
    <div className="container mx-auto sm:mt-50 z-10 ">
