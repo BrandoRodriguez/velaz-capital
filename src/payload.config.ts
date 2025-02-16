@@ -13,15 +13,15 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 //collections
-import Users from './collections/users'
-import Media from './collections/media'
-import Pages from './collections/pages'
-import Properties from './collections/properties'
-import Categories from './collections/categories'
+import Users from '@/payload/collections/users'
+import Media from '@/payload/collections/media'
+import Pages from '@/payload/collections/pages'
+import Properties from '@/payload/collections/properties'
+import Categories from '@/payload/collections/categories'
 
 //globals
-import Header from './collections/globals/header'
-import Footer from './collections/globals/footer'
+import Header from '@/payload/collections/globals/header'
+import Footer from '@/payload/collections/globals/footer'
 
 //languages
 import { es } from '@payloadcms/translations/languages/es'
@@ -31,7 +31,10 @@ import { en } from '@payloadcms/translations/languages/en'
 import localization from './i18n/localization'
 
 //plugins
-import { plugins } from '@/payload/plugins'
+import plugins from '@/payload/plugins'
+
+//seed
+import seedHandler from '@/payload/seed/seedHandler'
 
 export default buildConfig({
   i18n: {
@@ -39,6 +42,9 @@ export default buildConfig({
   },
   localization,
   admin: {
+    components: {
+      afterDashboard: ['@/payload/components/after-dashboard'],
+    },
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
@@ -61,6 +67,13 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
+  endpoints: [
+    {
+      handler: seedHandler,
+      method: 'get',
+      path: '/seed',
+    },
+  ],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

@@ -8,11 +8,14 @@ import React, { cache } from 'react'
 import type { Page as PageType } from '@/payload-types'
 // import { RenderBlocks } from '@/blocks/RenderBlocks'
 // import { RenderHero } from '@/heros/RenderHero'
-import { generateMeta } from '@/utilities/generateMeta'
+import { generateMeta } from '@/utils/generateMeta'
 import { TypedLocale } from 'payload'
 
 //blocks
 import RenderHero from './_components/heros/RenderHero'
+
+//ui
+import { Button } from '@/components/ui/button'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -59,9 +62,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   // }
 
   const { hero, layout } = page
-
-  console.log(hero, "hero")
-  console.log(layout, "layout")
 
   return (
     <main>

@@ -1,10 +1,11 @@
 import type { Field } from 'payload'
 
-import { deepMerge } from '@/utilities'
+import { deepMerge } from '@/utils'
 
-export type LinkAppearances = 'default' | 'outline'
+export type LinkVariants = 'default' | 'outline' | 'soft' | 'ghost'
+export type LinkColors = 'default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive'
 
-export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
+export const variantOptions: Record<LinkVariants, { label: string; value: string }> = {
   default: {
     label: 'Default',
     value: 'default',
@@ -13,15 +14,56 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
     label: 'Outline',
     value: 'outline',
   },
+  soft: {
+    label: 'Soft',
+    value: 'soft',
+  },
+  ghost: {
+    label: 'Ghost',
+    value: 'ghost',
+  },
 }
 
+export const colorOptions: Record<LinkColors, { label: string; value: string }> = {
+  default: {
+    label: 'Default',
+    value: 'default',
+  },
+  primary: {
+    label: 'Primary',
+    value: 'primary',
+  },
+  secondary: {
+    label: 'Secondary',
+    value: 'secondary',
+  },
+  success: {
+    label: 'Success',
+    value: 'success',
+  },
+  info: {
+    label: 'Info',
+    value: 'info',
+  },
+  warning: {
+    label: 'Warning',
+    value: 'warning',
+  },
+  destructive: {
+    label: 'Destructive',
+    value: 'destructive',
+  }
+}
+
+
 type LinkType = (options?: {
-  appearances?: LinkAppearances[] | false
+  variants?: LinkVariants[] | false
+  colors?: LinkColors[] | false
   disableLabel?: boolean
   overrides?: Record<string, unknown>
 }) => Field
 
-export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+export const link: LinkType = ({ variants, colors, disableLabel = false, overrides = {} } = {}) => {
   const linkResult: Field = {
     name: 'link',
     type: 'group',
@@ -119,23 +161,58 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
     linkResult.fields = [...linkResult.fields, ...linkTypes]
   }
 
-  if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline]
+  let variantOptionsToUse =
+    [
+      variantOptions.default,
+      variantOptions.outline,
+      variantOptions.soft,
+      variantOptions.ghost,
+    ];
 
-    if (appearances) {
-      appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
-    }
-
-    linkResult.fields.push({
-      name: 'appearance',
-      type: 'select',
-      admin: {
-        description: 'Choose how the link should be rendered.',
-      },
-      defaultValue: 'default',
-      options: appearanceOptionsToUse,
-    })
+  if (variants) {
+    variantOptionsToUse = variants.map((variant) => variantOptions[variant]);
   }
+
+  let colorOptionsToUse =
+    [
+      colorOptions.default,
+      colorOptions.primary,
+      colorOptions.secondary,
+      colorOptions.success,
+      colorOptions.info,
+      colorOptions.warning,
+      colorOptions.destructive,
+    ];
+
+  if (colors) {
+    colorOptionsToUse = colors.map((color) => colorOptions[color]);
+  }
+
+  linkResult.fields.push({
+    type: 'row',
+    fields: [
+      {
+        name: 'variant',
+        type: 'select',
+        admin: {
+          description: 'Choose how the link should be rendered.',
+          width: '50%',
+        },
+        defaultValue: 'default',
+        options: variantOptionsToUse,
+      },
+      {
+        name: 'color',
+        type: 'select',
+        admin: {
+          description: 'Choose how the link should be rendered.',
+          width: '50%',
+        },
+        defaultValue: 'default',
+        options: colorOptionsToUse,
+      },
+    ],
+  });
 
   return deepMerge(linkResult, overrides)
 }

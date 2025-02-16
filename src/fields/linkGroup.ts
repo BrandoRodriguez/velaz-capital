@@ -1,23 +1,25 @@
 import type { ArrayField, Field } from 'payload'
 
-import type { LinkAppearances } from './link'
+import type { LinkVariants, LinkColors } from './link'
 
-import { deepMerge } from '@/utilities'
+import { deepMerge } from '@/utils'
 import { link } from './link'
 
 type LinkGroupType = (options?: {
-  appearances?: LinkAppearances[] | false
+  variants?: LinkVariants[] | false
+  colors?: LinkColors[] | false
   overrides?: Partial<ArrayField>
 }) => Field
 
-export const linkGroup: LinkGroupType = ({ appearances, overrides = {} } = {}) => {
+export const linkGroup: LinkGroupType = ({ variants, colors, overrides = {} } = {}) => {
   const generatedLinkGroup: Field = {
     name: 'links',
     type: 'array',
     localized: true,
     fields: [
       link({
-        appearances,
+        variants,
+        colors,
       }),
     ],
   }

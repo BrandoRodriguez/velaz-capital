@@ -1,14 +1,22 @@
 'use client'
-// import { useHeaderTheme } from '@/providers/HeaderTheme'
-import Link from 'next/link'
-import { useParams } from 'next/navigation'
+
+//react
 import React, { useEffect, useState, useTransition } from 'react'
+
+//types
 import type { Header as HeaderType } from '@/payload-types'
-// import { CMSLink } from '@/components/Link'
+import type { Header } from '@/payload-types'
+
+
+//i18n
 import { useTranslations } from 'next-intl'
 
+//ui
+import { CMSLink } from '@/components/ui/link'
 
-import type { Header } from '@/payload-types'
+
+
+
 
 // import { Logo } from '@/components/Logo/Logo'
 // import { HeaderNav } from './Nav'
@@ -29,25 +37,11 @@ interface HeaderClientProps {
 }
 
 const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
-  // /* Storing the value in a useState to avoid hydration errors */
-  // const [theme, setTheme] = useState<string | null>(null)
-  // const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  // const pathname = usePathname()
 
-  // useEffect(() => {
-  //   setHeaderTheme(null)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [pathname])
-
-  // useEffect(() => {
-  //   if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [headerTheme])
-
+  console.log(header, "header")
   return (
     <header
-      className="container relative z-20 py-8 flex justify-end gap-2"
-    // {...(theme ? { 'data-theme': theme } : {})}
+      className="container"
     >
       {/* <Link href="/" className="me-auto">
         <Logo />
@@ -99,14 +93,16 @@ export default HeaderClient
 // }
 
 
-const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
+export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   const navItems = header?.navItems || []
   const t = useTranslations()
 
   return (
     <nav className="flex gap-3 items-center">
       {/* {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="link" />
+        return (
+          <CMSLink key={i} {...link} appearance="link" />
+        )
       })} */}
     </nav>
   )

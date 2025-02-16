@@ -39,10 +39,13 @@ import React from 'react'
 // import { LivePreviewListener } from '@/components/LivePreviewListener'
 // import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
+//layout
+import { Header } from '@/components/globals/header/header'
 
 
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
+import { cn } from '@/utils/cn'
 
 
 type Args = {
@@ -56,7 +59,7 @@ const marcellus = Marcellus({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
-  variable: '--font-marcellus-mono',
+  variable: '--font-marcellus',
 })
 
 const dm_sans = DM_Sans({
@@ -81,7 +84,7 @@ export default async function RootLayout({ children, params }: Args) {
 
   return (
     <html
-      // className={cn(marcellus.variable, dm_sans.variable, dm_sans.className)}
+      className={cn(marcellus.variable, dm_sans.variable, dm_sans.className)}
       lang={locale}
       dir={direction}
       suppressHydrationWarning

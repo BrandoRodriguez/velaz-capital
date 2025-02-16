@@ -81,7 +81,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact';
     richText?: {
       root: {
         type: string;
@@ -111,14 +111,19 @@ export interface Page {
             /**
              * Choose how the link should be rendered.
              */
-            appearance?: ('default' | 'outline') | null;
+            variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+            /**
+             * Choose how the link should be rendered.
+             */
+            color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
           };
           id?: string | null;
         }[]
       | null;
-    media?: (number | null) | Media;
+    mediaDesktop?: (number | null) | Media;
+    mediaMobile?: (number | null) | Media;
   };
-  layout: CallToActionBlock[];
+  layout?: CallToActionBlock[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -187,7 +192,11 @@ export interface CallToActionBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
         };
         id?: string | null;
       }[]
@@ -559,11 +568,13 @@ export interface PagesSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
-                    appearance?: T;
+                    variant?: T;
+                    color?: T;
                   };
               id?: T;
             };
-        media?: T;
+        mediaDesktop?: T;
+        mediaMobile?: T;
       };
   layout?:
     | T
@@ -601,7 +612,8 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
-              appearance?: T;
+              variant?: T;
+              color?: T;
             };
         id?: T;
       };
@@ -878,6 +890,14 @@ export interface Header {
           } | null;
           url?: string | null;
           label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
         };
         id?: string | null;
       }[]
@@ -902,6 +922,14 @@ export interface Footer {
           } | null;
           url?: string | null;
           label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
         };
         id?: string | null;
       }[]
@@ -925,6 +953,8 @@ export interface HeaderSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+              variant?: T;
+              color?: T;
             };
         id?: T;
       };
@@ -948,6 +978,8 @@ export interface FooterSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+              variant?: T;
+              color?: T;
             };
         id?: T;
       };

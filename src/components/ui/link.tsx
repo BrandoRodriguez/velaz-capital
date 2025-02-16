@@ -1,69 +1,71 @@
-import { Button, type ButtonProps } from '@/components/ui/button'
-import { cn } from '@/utilities/ui'
+import { Button, buttonVariants, type ButtonProps } from '@/components/ui/button'
+import { cn } from '@/utils/cn'
 import { Link as i18nLink } from '@/i18n/routing'
 import React from 'react'
 
-import type { Page, Post } from '@/payload-types'
+import type { Page, Property } from '@/payload-types'
 import NextLink from 'next/link'
 
 type CMSLinkType = {
- appearance?: 'inline' | ButtonProps['variant']
- children?: React.ReactNode
- className?: string
- label?: string | null
- newTab?: boolean | null
- reference?: {
-  relationTo: 'pages' | 'posts'
-  value: Page | Post | string | number
- } | null
- size?: ButtonProps['size'] | null
- type?: 'custom' | 'reference' | null
- url?: string | null
+  variant?: 'default' | ButtonProps['variant']
+  children?: React.ReactNode
+  className?: string
+  label?: string | null
+  newTab?: boolean | null
+  reference?: {
+    relationTo: 'pages' | 'posts'
+    value: Page | Property | string | number
+  } | null
+  size?: ButtonProps['size'] | null
+  type?: 'custom' | 'reference' | null
+  url?: string | null
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
- const {
-  type,
-  appearance = 'inline',
-  children,
-  className,
-  label,
-  newTab,
-  reference,
-  size: sizeFromProps,
-  url,
- } = props
 
- const href =
-  type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-   ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug
-   }`
-   : url
+  console.log(props, "link")
 
- if (!href) return null
+  const {
+    type,
+    variant = 'default',
+    children,
+    label,
+    newTab,
+    className,
+    reference,
+    size = 'xl',
+    url,
+  } = props
 
- const finalHref = href || url || ''
- const Link = finalHref.startsWith('/admin') ? NextLink : i18nLink
+  const href =
+    type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
+      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug
+      }`
+      : url
 
- const size = appearance === 'link' ? 'clear' : sizeFromProps
- const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
+  if (!href) return null
 
- /* Ensure we don't break any styles set by richText */
- if (appearance === 'inline') {
+  const finalHref = href || url || ''
+  const Link = finalHref.startsWith('/admin') ? NextLink : i18nLink
+
+  // const size = appearance === 'link' ? 'clear' : sizeFromProps
+  const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
+
+  // if (appearance === 'link') {
+  //   return (
+  //     <Link className="font-medium text-red-950" href={finalHref} {...newTabProps}>
+  //       {label && label}
+  //       {children && children}
+  //     </Link>
+  //   )
+  // }
+
   return (
-   <Link className={cn(className)} href={finalHref} {...newTabProps}>
-    {label && label}
-    {children && children}
-   </Link>
+    <Button asChild className={className} variant={variant} size={size}>
+      <Link href={finalHref} {...newTabProps}>
+        {label && label}
+        {children && children}
+      </Link>
+    </Button>
   )
- }
-
- return (
-  <Button asChild className={className} size={size} variant={appearance}>
-   <Link className={cn(className)} href={finalHref} {...newTabProps}>
-    {label && label}
-    {children && children}
-   </Link>
-  </Button>
- )
 }
