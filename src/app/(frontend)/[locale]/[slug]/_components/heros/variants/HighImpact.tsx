@@ -9,7 +9,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaDesktop, mediaMobile }) => {
 
- const sm = useMediaQuery("(min-width: 40rem)");
+ const sm = useMediaQuery("(max-width: 40rem)");
 
  return (
   <section className="hero">
@@ -33,7 +33,12 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
    </div> */}
    <div className="h-dvh">
     <React.Fragment>
-     <Media fill imgClassName="-z-10 object-cover bg-top" priority resource={sm ? mediaDesktop ?? '' : mediaMobile ?? ''} />
+     <Media
+      fill
+      imgClassName="-z-10 object-cover bg-top "
+      priority
+      resource={!sm ? mediaDesktop ?? '' : mediaMobile ?? ''}
+     />
     </React.Fragment>
    </div>
   </section>

@@ -57,7 +57,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   return (
     <NextImage
       alt={alt || ''}
-      className={cn(imgClassName)}
+      className={cn(imgClassName, isLoading && 'opacity-0')}
       fill={fill}
       height={!fill ? height : undefined}
       onClick={onClick}
@@ -68,7 +68,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         }
       }}
       priority={priority}
-      quality={90}
+      quality={100}
+      // style={{ display: isLoading ? 'none' : 'block' }}
       // sizes={sizes}
       src={src}
       width={!fill ? width : undefined}
