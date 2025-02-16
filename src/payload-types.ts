@@ -192,7 +192,7 @@ export interface CallToActionBlock {
           /**
            * Choose how the link should be rendered.
            */
-          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          variant?: ('default' | 'outline') | null;
           /**
            * Choose how the link should be rendered.
            */
