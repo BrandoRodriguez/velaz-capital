@@ -1,13 +1,22 @@
+//plugins
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-// import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
 
+//types
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Page } from '@/payload-types'
+
+//fields
+import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+
+//utilities
 import { getServerSideURL } from '@/utils/getURL'
+
+//hooks
+import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects'
 
 
 const generateTitle: GenerateTitle<Page> = ({ doc }) => {
@@ -52,13 +61,34 @@ const plugins: Plugin[] = [
       },
     },
   }),
-  // payloadCloudPlugin(),
   vercelBlobStorage({
     collections: {
       media: true,
     },
     token: process.env.BLOB_READ_WRITE_TOKEN || '',
   }),
+  redirectsPlugin({
+    collections: ['pages'],
+    overrides: {
+      // @ts-expect-error
+      fields: ({ defaultFields }) => {
+        return defaultFields.map((field) => {
+          if ('name' in field && field.name === 'from') {
+            return {
+              ...field,
+              admin: {
+                description: 'You will need to rebuild the website when changing this field.',
+              },
+            }
+          }
+          return field
+        })
+      },
+      hooks: {
+        afterChange: [revalidateRedirects],
+      },
+    },
+  })
 ]
 
 export default plugins

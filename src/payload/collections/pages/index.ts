@@ -4,19 +4,14 @@ import type { CollectionConfig, TypedLocale } from 'payload'
 //auth
 import { authenticated, authenticatedOrPublished } from '@/payload/access'
 
-// import { Archive } from '../../blocks/ArchiveBlock/config'
-// import { CallToAction } from '../../blocks/CallToAction/config'
-// import { Content } from '../../blocks/Content/config'
-// import { FormBlock } from '../../blocks/Form/config'
-// import { MediaBlock } from '../../blocks/MediaBlock/config'
-// import { hero } from '@/heros/config'
-
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt'
 
 //utilities
 import { generatePreviewPath } from '@/utils'
 
+//hooks
+import { revalidatePage } from './hooks/revalidatePage'
 
 //blocks
 import Hero from './blocks/hero'
@@ -126,10 +121,10 @@ const Pages: CollectionConfig = {
     },
     ...slugField(),
   ],
-  // hooks: {
-  //   afterChange: [revalidatePage],
-  //   beforeChange: [populatePublishedAt],
-  // },
+  hooks: {
+    afterChange: [revalidatePage],
+    beforeChange: [populatePublishedAt],
+  },
   versions: {
     drafts: {
       autosave: {
