@@ -59,9 +59,6 @@ export default buildConfig({
   globals: [Header, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
@@ -78,10 +75,11 @@ export default buildConfig({
     ...plugins,
   ],
   sharp,
-  // typescript: {
-  //   outputFile: path.resolve(dirname, 'payload-types.ts'),
-  // },
-  //
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
 })
+
+//
