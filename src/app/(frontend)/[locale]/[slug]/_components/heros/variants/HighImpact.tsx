@@ -13,10 +13,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
 
  return (
   <section className="hero">
-   <div className="container mx-auto sm:mt-50 z-10 ">
-    <div className='max-sm:h-dvh flex flex-col justify-end max-sm:pb-10'>
+   <div className="container mx-auto z-10">
+    <div className='h-dvh flex flex-col justify-end sm:justify-center max-sm:pb-10'>
      <div className='flex flex-col justify-center items-center gap-8'>
-      {richText && <RichText className='sm:text-center flex flex-col gap-6 justify-center items-center' content={richText} enableGutter={false} />}
+      {richText && <RichText className='sm:text-center flex flex-col gap-6 justify-center sm:items-center' content={richText} enableGutter={false} />}
       {Array.isArray(links) && links.length > 0 && (
        <ul className="flex gap-4 max-sm:w-full">
         {links.map(({ link }, i) => {

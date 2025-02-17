@@ -73,11 +73,11 @@
 
 .container {
   max-width: 80rem;
-}
-
-@media (width < 500px) {
-  .container {
-    width: 100%;
+  @media (width <= 64rem) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @media (width < 40rem) {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
@@ -90,7 +90,11 @@
   & h1 {
     font-size: 5.625rem;
     line-height: 5.625rem;
-    @media (width < 500px) {
+    @media (width <= 64rem) {
+      font-size: 4rem;
+      line-height: 4rem;
+    };
+    @media (width < 48rem) {
       font-size: 3rem;
       line-height: 3rem;
     }
@@ -99,7 +103,7 @@
   & p {
     font-size: 1.25rem;
     max-width: 50rem;
-     @media (width < 500px) {
+     @media (width < 48rem) {
       font-size: 1rem;
     }
   }
