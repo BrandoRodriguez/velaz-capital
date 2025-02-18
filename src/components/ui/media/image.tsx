@@ -8,13 +8,13 @@ import React from 'react'
 
 import type { Props as MediaProps } from './types'
 
-const breakpoints = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  '2xl': 1536,
-}
+// const breakpoints = {
+//   sm: 640,
+//   md: 768,
+//   lg: 1024,
+//   xl: 1280,
+//   '2xl': 1536,
+// }
 
 export const ImageMedia: React.FC<MediaProps> = (props) => {
   const {
@@ -25,7 +25,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     onLoad: onLoadFromProps,
     priority,
     resource,
-    size: sizeFromProps,
+    // size: sizeFromProps,
     src: srcFromProps,
   } = props
 
@@ -52,11 +52,11 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   }
 
   //NOTE: this is used by the browser to determine which image to download at different screen sizes
-  const sizes = sizeFromProps
-    ? sizeFromProps
-    : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value}px`)
-      .join(', ')
+  // const sizes = sizeFromProps
+  //   ? sizeFromProps
+  //   : Object.entries(breakpoints)
+  //     .map(([, value]) => `(max-width: ${value}px) ${value}px`)
+  //     .join(', ')
 
   return (
     <NextImage
@@ -73,7 +73,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
       }}
       priority={priority}
       quality={100}
-      sizes={sizes}
+      // sizes={sizes}
       src={src}
       width={!fill ? width : undefined}
     />

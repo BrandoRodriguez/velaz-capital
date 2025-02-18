@@ -75,15 +75,15 @@ export default async function Page({ params: paramsPromise }: Args) {
   )
 }
 
-// export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-//   const { slug = 'home', locale = 'en' } = await paramsPromise
-//   const page = await queryPage({
-//     slug,
-//     locale,
-//   })
+export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
+  const { slug = 'home', locale = 'en' } = await paramsPromise
+  const page = await queryPage({
+    slug,
+    locale,
+  })
 
-//   return generateMeta({ doc: page })
-// }
+  return generateMeta({ doc: page })
+}
 
 const queryPage = cache(async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
 

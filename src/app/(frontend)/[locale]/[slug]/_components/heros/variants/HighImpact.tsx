@@ -36,7 +36,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
      <Media
       fill
       imgClassName="-z-10 object-cover bg-top "
-      priority
+      // priority
       resource={!sm ? mediaDesktop ?? '' : mediaMobile ?? ''}
      />
     </React.Fragment>

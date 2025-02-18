@@ -134,5 +134,4 @@ const Pages: CollectionConfig = {
     maxPerDoc: 50,
   },
 }
-//
 export default Pages

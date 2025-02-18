@@ -37,7 +37,7 @@ import React from 'react'
 // import { Footer } from '@/globals/Footer/Component'
 // import { Header } from '@/globals/Header/Component'
 // import { LivePreviewListener } from '@/components/LivePreviewListener'
-// import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { mergeOpenGraph } from '@/utils/mergeOpenGraph'
 
 //layout
 import { Header } from '@/components/globals/header/header'
@@ -90,8 +90,6 @@ export default async function RootLayout({ children, params }: Args) {
       suppressHydrationWarning
     >
       <head>
-        {/* <InitTheme /> */}
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
@@ -111,15 +109,15 @@ export default async function RootLayout({ children, params }: Args) {
   )
 }
 
-// export const metadata: Metadata = {
-//   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || ''),
-//   openGraph: mergeOpenGraph(),
-//   twitter: {
-//     card: 'summary_large_image',
-//     creator: '@brandorodriguez',
-//   },
-// }
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || ''),
+  openGraph: mergeOpenGraph(),
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@brandorodriguez',
+  },
+}
 
-// export function generateStaticParams() {
-//   return routing.locales.map((locale) => ({ locale }))
-// }
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
