@@ -167,7 +167,7 @@ export interface Page {
             /**
              * Choose how the link should be rendered.
              */
-            variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+            variant?: ('default' | 'link' | 'outline' | 'soft' | 'ghost') | null;
             /**
              * Choose how the link should be rendered.
              */
@@ -990,7 +990,30 @@ export interface Header {
           /**
            * Choose how the link should be rendered.
            */
-          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          variant?: ('default' | 'link' | 'outline' | 'soft' | 'ghost') | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  buttonItems?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          variant?: ('default' | 'link' | 'outline' | 'soft' | 'ghost') | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -1022,7 +1045,7 @@ export interface Footer {
           /**
            * Choose how the link should be rendered.
            */
-          variant?: ('default' | 'outline' | 'soft' | 'ghost') | null;
+          variant?: ('default' | 'link' | 'outline' | 'soft' | 'ghost') | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -1040,6 +1063,22 @@ export interface Footer {
  */
 export interface HeaderSelect<T extends boolean = true> {
   navItems?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              variant?: T;
+              color?: T;
+            };
+        id?: T;
+      };
+  buttonItems?:
     | T
     | {
         link?:

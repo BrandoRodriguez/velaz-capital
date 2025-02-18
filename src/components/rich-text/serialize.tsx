@@ -34,7 +34,6 @@ type Props = {
 
 export function serializeLexical({ nodes }: Props): JSX.Element {
 
- console.log(nodes, 'nodes')
  return (
   <Fragment>
    {nodes?.map((node, index): JSX.Element | null => {

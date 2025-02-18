@@ -19,6 +19,16 @@ const Header: GlobalConfig = {
       ],
       maxRows: 6,
     },
+    {
+      name: 'buttonItems',
+      type: 'array',
+      fields: [
+        link({
+          variants: false,
+        }),
+      ],
+      maxRows: 6,
+    },
   ],
   hooks: {
     afterChange: [revalidateHeader],

@@ -11,6 +11,7 @@ const home = (locale: 'en' | 'es'): RequiredDataFromCollectionSlug<'pages'> => (
         link: {
           type: 'custom',
           variant: 'default',
+          color: 'primary',
           label: locale === 'en' ? 'Explore properties' : 'Explorar propiedades',
           url: '/properties',
         },

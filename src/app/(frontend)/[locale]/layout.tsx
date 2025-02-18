@@ -1,51 +1,37 @@
-// import React from 'react'
-// import './styles.css'
-
-// export const metadata = {
-//   description: 'A blank template using Payload in a Next.js app.',
-//   title: 'Payload Blank Template',
-// }
-
-// export default async function RootLayout(props: { children: React.ReactNode }) {
-//   const { children } = props
-
-//   return (
-//     <html lang="en">
-//       <body>
-//         <main>{children}</main>
-//       </body>
-//     </html>
-//   )
-// }
-
-
-import type { Metadata } from 'next'
-
-import './globals.css'
-
-import { draftMode } from 'next/headers'
-import { TypedLocale } from 'payload'
-import { routing } from '@/i18n/routing'
-import { notFound } from 'next/navigation'
-import localization from '@/i18n/localization'
-
-// import { cn } from 'src/utilities/cn'
-import { Marcellus, DM_Sans } from 'next/font/google'
 import React from 'react'
 
-// import { AdminBar } from '@/components/AdminBar'
-// import { Footer } from '@/globals/Footer/Component'
-// import { Header } from '@/globals/Header/Component'
-// import { LivePreviewListener } from '@/components/LivePreviewListener'
+//metadata
+import type { Metadata } from 'next'
+
+//styles
+import './globals.css'
+
+//next
+import { draftMode } from 'next/headers'
+import { notFound } from 'next/navigation'
+
+//types
+import { TypedLocale } from 'payload'
+
+//i18n
+import { routing } from '@/i18n/routing'
+import localization from '@/i18n/localization'
+import { getMessages, setRequestLocale } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
+
+//fonts
+import { Marcellus, DM_Sans } from 'next/font/google'
+
+//utils
 import { mergeOpenGraph } from '@/utils/mergeOpenGraph'
+import { cn } from '@/utils/cn'
 
 //layout
 import { Header } from '@/components/globals/header/header'
 
 
-import { getMessages, setRequestLocale } from 'next-intl/server'
-import { NextIntlClientProvider } from 'next-intl'
-import { cn } from '@/utils/cn'
+// import { AdminBar } from '@/components/AdminBar'
+// import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 
 type Args = {
@@ -100,7 +86,7 @@ export default async function RootLayout({ children, params }: Args) {
             }}
           /> */}
           {/* <LivePreviewListener /> */}
-          {/* <Header locale={locale} /> */}
+          <Header locale={locale} />
           {children}
           {/* <Footer locale={locale} /> */}
         </NextIntlClientProvider>

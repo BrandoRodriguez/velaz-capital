@@ -159,6 +159,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Home',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -166,6 +167,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Properties',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -173,6 +175,7 @@ export const seed = async ({
             type: 'custom',
             label: 'About',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -180,6 +183,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Services',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -187,9 +191,9 @@ export const seed = async ({
             type: 'custom',
             label: 'Contacto',
             url: '/',
+            variant: 'link',
           },
         },
-
         // {
         //   link: {
         //     type: 'reference',
@@ -200,6 +204,17 @@ export const seed = async ({
         //     },
         //   },
         // },
+      ],
+      buttonItems: [
+        {
+          link: {
+            type: 'custom',
+            label: 'Schedule',
+            url: '/',
+            variant: 'default',
+            color: 'primary',
+          },
+        }
       ],
     },
     req,
@@ -216,6 +231,7 @@ export const seed = async ({
             type: 'custom',
             url: '/',
             label: 'Inicio',
+            variant: 'link',
           },
         },
         {
@@ -223,6 +239,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Propiedades',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -230,6 +247,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Nosotros',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -237,6 +255,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Ofrecemos',
             url: '/',
+            variant: 'link',
           },
         },
         {
@@ -244,6 +263,7 @@ export const seed = async ({
             type: 'custom',
             label: 'Contacto',
             url: '/',
+            variant: 'link',
           },
         },
 
@@ -259,6 +279,17 @@ export const seed = async ({
         //   },
         // },
       ],
+      buttonItems: [
+        {
+          link: {
+            type: 'custom',
+            label: 'Agenda una cita',
+            url: '/',
+            variant: 'default',
+            color: 'primary',
+          },
+        },
+      ]
     },
     req,
   })

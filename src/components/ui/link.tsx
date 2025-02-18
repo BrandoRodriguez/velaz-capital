@@ -8,6 +8,7 @@ import NextLink from 'next/link'
 
 type CMSLinkType = {
   variant?: 'default' | ButtonProps['variant']
+  color?: 'default' | ButtonProps['color'] | null
   children?: React.ReactNode
   className?: string
   label?: string | null
@@ -23,17 +24,16 @@ type CMSLinkType = {
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
-  console.log(props, "link")
-
   const {
     type,
     variant = 'default',
+    color = 'default',
     children,
     label,
     newTab,
     className,
     reference,
-    size = 'xl',
+    size = 'default',
     url,
   } = props
 
@@ -51,9 +51,9 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   // const size = appearance === 'link' ? 'clear' : sizeFromProps
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
-  // if (appearance === 'link') {
+  // if (variant === 'link') {
   //   return (
-  //     <Link className="font-medium text-red-950" href={finalHref} {...newTabProps}>
+  //     <Link href={finalHref} {...newTabProps}>
   //       {label && label}
   //       {children && children}
   //     </Link>
@@ -61,7 +61,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   // }
 
   return (
-    <Button asChild className={className} variant={variant} size={size}>
+    <Button asChild className={className} variant={variant} color={color ?? 'default'} size={size}>
       <Link href={finalHref} {...newTabProps}>
         {label && label}
         {children && children}

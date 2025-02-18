@@ -12,7 +12,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
  const sm = useMediaQuery("(max-width: 40rem)");
 
  return (
-  <section className="hero">
+  <section className="hero h-dvh h-screen">
    <div className="container mx-auto z-10">
     <div className='h-dvh flex flex-col justify-end sm:justify-center max-sm:pb-10'>
      <div className='flex flex-col justify-center items-center gap-8'>
@@ -31,11 +31,11 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
      </div>
     </div>
    </div>
-   <div className="h-dvh">
+   <div className="">
     <React.Fragment>
      <Media
       fill
-      imgClassName="-z-10 object-cover bg-top "
+      imgClassName="-z-10 object-cover bg-top"
       // priority
       resource={!sm ? mediaDesktop ?? '' : mediaMobile ?? ''}
      />

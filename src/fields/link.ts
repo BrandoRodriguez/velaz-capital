@@ -2,13 +2,17 @@ import type { Field } from 'payload'
 
 import { deepMerge } from '@/utils'
 
-export type LinkVariants = 'default' | 'outline' | 'soft' | 'ghost'
+export type LinkVariants = 'default' | 'link' | 'outline' | 'soft' | 'ghost'
 export type LinkColors = 'default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive'
 
 export const variantOptions: Record<LinkVariants, { label: string; value: string }> = {
   default: {
     label: 'Default',
     value: 'default',
+  },
+  link: {
+    label: 'Link',
+    value: 'link',
   },
   outline: {
     label: 'Outline',
@@ -164,6 +168,7 @@ export const link: LinkType = ({ variants, colors, disableLabel = false, overrid
   let variantOptionsToUse =
     [
       variantOptions.default,
+      variantOptions.link,
       variantOptions.outline,
       variantOptions.soft,
       variantOptions.ghost,

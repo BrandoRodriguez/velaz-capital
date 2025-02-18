@@ -2,6 +2,7 @@
 type Locale = {
   code: string;
   label: string;
+  custom?: string;
   rtl?: boolean; // Add rtl property here, making it optional
 };
 
@@ -12,10 +13,12 @@ const localization = {
     {
       code: 'en',
       label: 'English (English)',
+      custom: 'EN',
     },
     {
       code: 'es',
       label: 'Spanish (Español)',
+      custom: 'ES',
     },
     // {
     //   code: 'ar',
