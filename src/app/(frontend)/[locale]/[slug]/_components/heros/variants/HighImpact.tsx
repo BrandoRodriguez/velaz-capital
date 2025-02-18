@@ -12,7 +12,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, richText, mediaD
  const sm = useMediaQuery("(max-width: 40rem)");
 
  return (
-  <section className="hero h-dvh h-screen">
+  <section className="hero h-dvh">
    <div className="container mx-auto z-10">
     <div className='h-dvh flex flex-col justify-end sm:justify-center max-sm:pb-10'>
      <div className='flex flex-col justify-center items-center gap-8'>
