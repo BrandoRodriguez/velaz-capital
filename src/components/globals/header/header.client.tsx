@@ -48,7 +48,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
 
   return (
     <header
-      className="absolute w-full"
+      className="absolute w-full z-50"
     >
       <div className='relative container mx-auto py-6 sm:py-8'>
         <div className='flex justify-between items-center'>

@@ -43,6 +43,7 @@ export default buildConfig({
   localization,
   admin: {
     components: {
+      
       afterDashboard: ['@/payload/components/after-dashboard'],
     },
     user: Users.slug,

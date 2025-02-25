@@ -1,21 +1,32 @@
-import type { Metadata } from 'next'
+import React, { cache } from 'react'
 
-// import { PayloadRedirects } from '@/components/PayloadRedirects'
+//metadata
+import type { Metadata } from 'next'
+import { generateMeta } from '@/utils/generateMeta'
+
+//next
+import { draftMode } from 'next/headers'
+
+//types
+import type { Page as PageType } from '@/payload-types'
+import { TypedLocale } from 'payload'
+
+
+// import { RenderHero } from '@/heros/RenderHero'
+
+//payload
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
-import type { Page as PageType } from '@/payload-types'
-// import { RenderBlocks } from '@/blocks/RenderBlocks'
-// import { RenderHero } from '@/heros/RenderHero'
-import { generateMeta } from '@/utils/generateMeta'
-import { TypedLocale } from 'payload'
 
 //blocks
 import RenderHero from './_components/heros/RenderHero'
+import RenderBlocks from './_components/blocks/RenderBlocks'
 
 //ui
 import { Button } from '@/components/ui/button'
+
+// import { PayloadRedirects } from '@/components/PayloadRedirects'
+
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -70,7 +81,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {/* <PayloadRedirects disableNotFound url={url} /> */}
 
       <RenderHero {...hero} />
-      {/* <RenderBlocks blocks={layout} locale={locale} /> */}
+      <RenderBlocks blocks={layout ?? []} locale={locale} />
     </main>
   )
 }

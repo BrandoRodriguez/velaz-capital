@@ -15,6 +15,7 @@ import { revalidatePage } from './hooks/revalidatePage'
 
 //blocks
 import Hero from './blocks/hero'
+import FormBlock from './blocks/form'
 import CTA from './blocks/cta'
 
 import {
@@ -24,6 +25,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -77,7 +79,7 @@ const Pages: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               localized: true,
-              blocks: [CTA],
+              blocks: [FormBlock],
               required: false,
             },
           ],

@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Block } from 'payload'
 
 import {
  FixedToolbarFeature,
@@ -7,33 +7,29 @@ import {
  lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { linkGroup } from '@/fields/linkGroup'
-
-const Hero: Field = {
- name: 'hero',
- type: 'group',
+const FormBlock: Block = {
+ slug: 'formBlock',
+ interfaceName: 'FormBlock',
  fields: [
   {
-   name: 'type',
-   type: 'select',
-   defaultValue: 'highImpact',
-   label: 'Type',
-   options: [
-    {
-     label: 'None',
-     value: 'none',
-    },
-    {
-     label: 'High Impact',
-     value: 'highImpact',
-    },
-   ],
+   name: 'form',
+   type: 'relationship',
+   relationTo: 'forms',
    required: true,
+   hasMany: true,
   },
   {
-   name: 'richText',
+   name: 'enableIntro',
+   type: 'checkbox',
+   label: 'Enable Intro Content',
+  },
+  {
+   name: 'introContent',
    type: 'richText',
    localized: true,
+   admin: {
+    condition: (_, { enableIntro }) => Boolean(enableIntro),
+   },
    editor: lexicalEditor({
     features: ({ rootFeatures }) => {
      return [
@@ -44,18 +40,14 @@ const Hero: Field = {
      ]
     },
    }),
-   label: false,
+   label: 'Intro Content',
   },
-  linkGroup({
-   overrides: {
-    maxRows: 2,
-   },
-  }),
   {
    name: 'images',
    type: 'array',
-   maxRows: 2,
+   // maxRows: 2,
    admin: {
+    condition: (_, { enableIntro }) => Boolean(enableIntro),
     components: {
      RowLabel: '@/payload/components/row-label',
     },
@@ -75,7 +67,13 @@ const Hero: Field = {
    label: 'Images',
   },
  ],
- label: false,
+ graphQL: {
+  singularName: 'FormBlock',
+ },
+ labels: {
+  plural: 'Form Blocks',
+  singular: 'Form Block',
+ },
 }
 
-export default Hero
+export default FormBlock

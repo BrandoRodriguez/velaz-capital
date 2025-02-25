@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url'
 //pages
 import home from './pages/home'
 
+//blocks
+import { formOne, formTwo } from './pages/blocks/forms'
+
 //media
 import image from './media/image'
 
@@ -108,14 +111,137 @@ export const seed = async ({
     req,
   })
 
+  const imageFormDesktop = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/form.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageFormDesktop.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/form.webp'),
+    req,
+  })
+
+  const imageFormMobile = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/form-m.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageFormMobile.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/form-m.webp'),
+    req,
+  })
+
+
+
   let imageHeroDesktopID: number | string = imageHeroDesktop.id
   let imageHeroMobileID: number | string = imageHeroMobile.id
+  let imageFormDesktopID: number | string = imageFormDesktop.id
+  let imageFormMobileID: number | string = imageFormMobile.id
 
   if (payload.db.defaultIDType === 'text') {
     imageHeroDesktopID = `"${imageHeroDesktop.id}"`
     imageHeroMobileID = `"${imageHeroMobile.id}"`
+    imageFormDesktopID = `"${imageFormDesktop.id}"`
+    imageFormMobileID = `"${imageFormMobile.id}"`
   }
   // #endregion
+
+
+
+
+  // #region Form
+
+  payload.logger.info(`— Seeding contact form...`)
+
+  const formOneData = await payload.create({
+    collection: 'forms',
+    locale: 'en',
+    data: JSON.parse(JSON.stringify(formOne('en'))),
+    req,
+  })
+
+  const formOneData_es = JSON.parse(JSON.stringify(formOne('es')))
+
+  await payload.update({
+    collection: 'forms',
+    id: formOneData.id,
+    locale: 'es',
+    data: {
+      redirect: formOneData_es.redirect,
+      title: formOneData_es.title,
+      id: formOneData.id,
+      submitButtonLabel: formOneData_es.submitButtonLabel,
+      confirmationType: formOneData_es.confirmationType,
+      createdAt: formOneData_es.createdAt,
+      updatedAt: formOneData_es.updatedAt,
+      confirmationMessage: formOneData_es.confirmationMessage,
+      fields: formOneData_es.fields?.map((field, index) => ({
+        id: formOneData.fields![index].id,
+        ...field,
+      })),
+      emails: formOneData_es.emails?.map((email, index) => ({
+        id: formOneData.emails![index].id,
+        ...email,
+      })),
+    },
+    req,
+  })
+
+  const formTwoData = await payload.create({
+    collection: 'forms',
+    locale: 'en',
+    data: JSON.parse(JSON.stringify(formTwo('en'))),
+    req,
+  })
+
+  const formTwoData_es = JSON.parse(JSON.stringify(formTwo('es')))
+
+  await payload.update({
+    collection: 'forms',
+    id: formTwoData.id,
+    locale: 'es',
+    data: {
+      redirect: formTwoData_es.redirect,
+      title: formTwoData_es.title,
+      id: formTwoData.id,
+      submitButtonLabel: formTwoData_es.submitButtonLabel,
+      confirmationType: formTwoData_es.confirmationType,
+      createdAt: formTwoData_es.createdAt,
+      updatedAt: formTwoData_es.updatedAt,
+      confirmationMessage: formTwoData_es.confirmationMessage,
+      fields: formTwoData_es.fields?.map((field, index) => ({
+        id: formTwoData.fields![index].id,
+        ...field,
+      })),
+      emails: formTwoData_es.emails?.map((email, index) => ({
+        id: formTwoData.emails![index].id,
+        ...email,
+      })),
+    },
+    req,
+  })
+
+  let formOneID: number | string = formOneData.id
+  let formTwoID: number | string = formTwoData.id
+
+  if (payload.db.defaultIDType === 'text') {
+    formOneID = `"${formOneID}"`
+    formTwoID = `"${formTwoID}"`
+  }
 
 
   // #region Pages
@@ -129,6 +255,10 @@ export const seed = async ({
       JSON.stringify(home('en'))
         .replace(/"\{\{IMAGE_HERO_DESKTOP\}\}"/g, String(imageHeroDesktopID))
         .replace(/"\{\{IMAGE_HERO_MOBILE\}\}"/g, String(imageHeroMobileID))
+        .replace(/"\{\{IMAGE_FORM_DESKTOP\}\}"/g, String(imageFormDesktopID))
+        .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
+        .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
+        .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
     ),
     req,
   })
@@ -141,6 +271,10 @@ export const seed = async ({
       JSON.stringify(home('es'))
         .replace(/"\{\{IMAGE_HERO_DESKTOP\}\}"/g, String(imageHeroDesktopID))
         .replace(/"\{\{IMAGE_HERO_MOBILE\}\}"/g, String(imageHeroMobileID))
+        .replace(/"\{\{IMAGE_FORM_DESKTOP\}\}"/g, String(imageFormDesktopID))
+        .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
+        .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
+        .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
     ),
     req,
   })
