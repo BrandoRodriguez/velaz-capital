@@ -54,9 +54,6 @@ const FormBlock: React.FC<
     form: formFromProps,
   } = props
 
-  console.log(props, 'images')
-
-
   const sm = useMediaQuery("(max-width: 40rem)");
 
   const mediaDesktop = images?.find(image => image.label === 'Desktop')?.media;

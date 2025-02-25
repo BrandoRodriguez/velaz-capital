@@ -23,6 +23,8 @@ import { cn } from '@/utils/cn'
 //react-hook-form
 import { useForm, FormProvider } from 'react-hook-form'
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { FormError } from '@/components/ui/form-error'
+import { FormSuccess } from '@/components/ui/form-success'
 
 export type Value = unknown
 
@@ -38,8 +40,9 @@ const Form = (props) => {
 
 
   const {
-    fields: formFromProps, formID, confirmationMessage, confirmationType, redirect, submitButtonLabel, title
+    fields: formFromProps, id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel, title
   } = props
+
 
   const formMethods = useForm({
     defaultValues: buildInitialFormState(formFromProps),
@@ -122,6 +125,7 @@ const Form = (props) => {
 
       void submitForm()
     },
+
     [router, formID, redirect, confirmationType],
   )
 
@@ -131,10 +135,10 @@ const Form = (props) => {
     <FormProvider {...formMethods}>
 
       {!isLoading && hasSubmitted && confirmationType === 'message' && (
-        <RichText content={confirmationMessage} />
+        <RichText content={confirmationMessage} className='bg-white text-center text-black text-xl flex justify-center flex-col p-8 min-h-[350px]' />
       )}
 
-      {isLoading && !hasSubmitted && <p>{t('loading')}</p>}
+      {/* {isLoading && !hasSubmitted && <p>{t('loading')}</p>} */}
 
       {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
 
@@ -150,7 +154,7 @@ const Form = (props) => {
                     return (
                       <div key={index}
                         className={cn({
-                          'col-span-2': title === "Invertir Ahora" ? index === 0 || index === 3 || index === 4 || index === 5 || index === 6 || index === 7 : index === 0 || index === 7
+                          'col-span-2': formID === 1 ? index === 0 || index === 3 || index === 4 || index === 5 || index === 6 || index === 7 : index === 0 || index === 7
                         })}
                       >
                         <Field
@@ -176,6 +180,7 @@ const Form = (props) => {
           </form>
         </Card>
       )}
+
     </FormProvider>
   )
 }

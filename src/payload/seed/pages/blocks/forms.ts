@@ -17,14 +17,14 @@ const formOne = (locale: 'en' | 'es'): Partial<Form> => ({
               text:
                 locale === 'en'
                   ? 'The contact form has been submitted successfully.'
-                  : 'El formulario uno de contacto ha sido enviado con éxito.',
+                  : 'El formulario de contacto ha sido enviado con éxito.',
               version: 1,
             },
           ],
           direction: 'ltr',
           format: '',
           indent: 0,
-          tag: 'h2',
+          tag: 'h3',
           version: 1,
         },
       ],
@@ -115,7 +115,7 @@ const formOne = (locale: 'en' | 'es'): Partial<Form> => ({
         },
         {
           value: '2',
-          label: locale === 'en' ? 'option 2' : 'opcion 2',
+          label: locale === 'en' ? 'option 3' : 'opcion 4',
         },
       ],
     },
@@ -176,7 +176,7 @@ const formTwo = (locale: 'en' | 'es'): Partial<Form> => ({
           direction: 'ltr',
           format: '',
           indent: 0,
-          tag: 'h2',
+          tag: 'h3',
           version: 1,
         },
       ],
@@ -267,7 +267,7 @@ const formTwo = (locale: 'en' | 'es'): Partial<Form> => ({
         },
         {
           value: '2',
-          label: locale === 'en' ? 'option 2' : 'opcion 2',
+          label: locale === 'en' ? 'option 3' : 'opcion 4',
         },
       ],
     },
