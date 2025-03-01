@@ -61,7 +61,7 @@ const FormBlock: React.FC<
 
   return (
     <section className="formBlock relative">
-      <div className="container mx-auto z-10 pt-10">
+      <div className="container mx-auto z-10 pt-10 md:pt-24">
         <div className='grid md:grid-cols-2 max-md:gap-8 items-center'>
           {enableIntro && introContent && (
             <RichText className="flex flex-col gap-6" content={introContent} enableGutter={false} />

@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Block } from 'payload'
 
 import {
  FixedToolbarFeature,
@@ -9,9 +9,9 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 
-const Content: Field = {
- name: 'content',
- type: 'group',
+const ContentBlock: Block = {
+ slug: 'contentBlock',
+ interfaceName: 'ContentBlock',
  fields: [
   {
    name: 'type',
@@ -54,33 +54,29 @@ const Content: Field = {
   {
    name: 'images',
    type: 'array',
-   maxRows: 2,
+   // maxRows: 2,
    admin: {
     components: {
      RowLabel: '@/payload/components/row-label',
     },
+    condition: (_, { type } = {}) => ['carousel'].includes(type),
    },
    fields: [
     {
      name: 'label',
      type: 'text',
     },
-    
     {
      name: 'media',
      type: 'upload',
      relationTo: 'media',
      required: false,
-     admin: {
-      condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-     },
     }
-    
    ],
    label: 'Images',
   },
  ],
- label: false,
 }
 
-export default Content
+
+export default ContentBlock

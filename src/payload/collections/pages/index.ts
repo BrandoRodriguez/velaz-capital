@@ -16,7 +16,7 @@ import { revalidatePage } from './hooks/revalidatePage'
 //blocks
 import Hero from './blocks/hero'
 import FormBlock from './blocks/form'
-import CTA from './blocks/cta'
+import ContentBlock from './blocks/content'
 
 import {
   MetaDescriptionField,
@@ -79,8 +79,8 @@ const Pages: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               localized: true,
-              blocks: [FormBlock],
-              required: false,
+              blocks: [FormBlock, ContentBlock],
+              required: true,
             },
           ],
           label: 'Content',

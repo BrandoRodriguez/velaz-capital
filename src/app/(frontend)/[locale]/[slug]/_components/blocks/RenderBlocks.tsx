@@ -6,16 +6,27 @@ import type { Page } from '@/payload-types'
 // import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 // import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 // import { ContentBlock } from '@/blocks/Content/Component'
-import FormBlock from './form/FormBlock'
+
 // import { MediaBlock } from '@/blocks/MediaBlock/Component'
+
+import FormBlock from './form/FormBlock'
+import ContentBlock from './content/RenderContent'
+
 import { TypedLocale } from 'payload'
 
-const blockComponents = {
-  // archive: ArchiveBlock,
-  // content: ContentBlock,
-  // cta: CallToActionBlock,
+// const blockComponents = {
+//   // archive: ArchiveBlock,
+//   // content: ContentBlock,
+//   // cta: CallToActionBlock,
+//   // mediaBlock: MediaBlock,
+//   formBlock: FormBlock,
+//   contentBlock: ContentBlock,
+// }
+
+const blockComponents: Record<string, React.FC<any>> = {
   formBlock: FormBlock,
-  // mediaBlock: MediaBlock,
+  contentBlock: ContentBlock,
+  // Add other block types here
 }
 
 const RenderBlocks: React.FC<{

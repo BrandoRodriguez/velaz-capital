@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import RichText from '@/components/rich-text'
 import { buildInitialFormState } from './buildInitialFormState'
-import { fields } from './ui/fields'
+import { fields } from './fields'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
@@ -23,8 +23,6 @@ import { cn } from '@/utils/cn'
 //react-hook-form
 import { useForm, FormProvider } from 'react-hook-form'
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { FormError } from '@/components/ui/form-error'
-import { FormSuccess } from '@/components/ui/form-success'
 
 export type Value = unknown
 
@@ -130,6 +128,7 @@ const Form = (props) => {
   )
 
   const sm = useMediaQuery("(max-width: 40rem)");
+
 
   return (
     <FormProvider {...formMethods}>

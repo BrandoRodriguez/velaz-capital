@@ -87,6 +87,126 @@ const home = (locale: 'en' | 'es'): RequiredDataFromCollectionSlug<'pages'> => (
   },
   layout: [
     {
+      blockName: 'contentBlock',
+      blockType: 'contentBlock',
+      type: 'carousel',
+      links: [
+        {
+          link: {
+            type: 'custom',
+            variant: 'default',
+            color: 'primary',
+            label: locale === 'en' ? 'Explore properties' : 'Conoce más sobre nosotros',
+            url: '/',
+          },
+        },
+      ],
+      images: [
+        {
+          label: 'content 1',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_1}}',
+        },
+        {
+          label: 'content 2',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_2}}',
+        },
+        {
+          label: 'content 3',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_3}}',
+        },
+        {
+          label: 'content 4',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_4}}',
+        },
+        {
+          label: 'content 5',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_5}}',
+        },
+        {
+          label: 'content 6',
+          // @ts-ignore
+          media: '{{IMAGE_CAROUSEL_6}}',
+        }
+      ],
+      richText: {
+        root: {
+          type: 'root',
+          children: [
+            {
+              type: 'heading',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text:
+                    locale === 'en'
+                      ? 'Your ideal partner in'
+                      : 'Construyendo confianza y',
+                  version: 1,
+                },
+                {
+                  type: "linebreak",
+                  version: 1
+                },
+
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text:
+                    locale === 'en'
+                      ? 'real estate investments'
+                      : 'resultados en cada inversión',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              tag: 'h2',
+              version: 1,
+            },
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text:
+                    locale === 'en'
+                      ? "Invest with confidence and maximize your assets. Veláz Capital, your ideal partner in real estate investments, ensures profitability and security."
+                      : 'Somos una firma independiente, multidisciplinar, especializada en la gestión de activos residenciales, aportando la solucion adecuada para maximizar tus resultados.',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+          ],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          version: 1,
+        },
+      },
+    },
+    {
       blockType: 'formBlock',
       blockName: 'formBlock',
       enableIntro: true,
@@ -160,6 +280,7 @@ const home = (locale: 'en' | 'es'): RequiredDataFromCollectionSlug<'pages'> => (
         }
       ],
     },
+
   ],
   meta: {
     description:
@@ -168,7 +289,7 @@ const home = (locale: 'en' | 'es'): RequiredDataFromCollectionSlug<'pages'> => (
         : 'Invierte con confianza y maximiza tus activos. Velaz Capital, tu socio ideal en inversiones inmobiliarias, te asegura rentabilidad y seguridad.',
     // @ts-ignore
     image: '{{IMAGE_HERO_DESKTOP}}',
-    title: locale === 'en' ? 'Invest with confidence' : 'Invierte con confianza',
+    title: locale === 'en' ? 'Invest with confidence' : 'Velaz Capital, Invierte con confianza y maximiza tus activos',
   },
   title: locale === 'en' ? 'Home' : 'Inicio',
 })

@@ -184,7 +184,7 @@ export interface Page {
         }[]
       | null;
   };
-  layout?: FormBlock[] | null;
+  layout: (FormBlock | ContentBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -427,6 +427,61 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  type: 'none' | 'carousel';
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          variant?: ('default' | 'link' | 'outline' | 'soft' | 'ghost') | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          color?: ('default' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  images?:
+    | {
+        label?: string | null;
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "properties".
  */
 export interface Property {
@@ -657,6 +712,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         formBlock?: T | FormBlockSelect<T>;
+        contentBlock?: T | ContentBlockSelect<T>;
       };
   meta?:
     | T
@@ -680,6 +736,39 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  images?:
+    | T
+    | {
+        label?: T;
+        media?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock_select".
+ */
+export interface ContentBlockSelect<T extends boolean = true> {
+  type?: T;
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              variant?: T;
+              color?: T;
+            };
+        id?: T;
+      };
   images?:
     | T
     | {

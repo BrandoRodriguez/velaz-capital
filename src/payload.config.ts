@@ -41,9 +41,12 @@ export default buildConfig({
     supportedLanguages: { es, en },
   },
   localization,
+
   admin: {
     components: {
-      
+      graphics: {
+        Logo: '@/payload/components/graphics/logo',
+      },
       afterDashboard: ['@/payload/components/after-dashboard'],
     },
     user: Users.slug,
@@ -52,8 +55,8 @@ export default buildConfig({
     },
     meta: {
       title: 'Dashboard',
-      titleSuffix: '- Brando Rodriguez',
-      description: 'Brando Rodriguez'
+      titleSuffix: '- Velaz Capital',
+      description: 'Velaz Capital'
     },
   },
   collections: [Pages, Properties, Categories, Media, Users],

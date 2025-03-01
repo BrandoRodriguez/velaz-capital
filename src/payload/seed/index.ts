@@ -81,7 +81,7 @@ export const seed = async ({
     collection: 'media',
     locale: 'en',
     data: image('en'),
-    filePath: path.resolve(dirname, './media/home/hero.webp'),
+    filePath: path.resolve(dirname, './media/home/hero/hero.webp'),
     req,
   })
 
@@ -90,7 +90,7 @@ export const seed = async ({
     id: imageHeroDesktop.id,
     data: image('es'),
     locale: 'es',
-    filePath: path.resolve(dirname, './media/home/hero.webp'),
+    filePath: path.resolve(dirname, './media/home/hero/hero.webp'),
     req,
   })
 
@@ -98,7 +98,7 @@ export const seed = async ({
     collection: 'media',
     locale: 'en',
     data: image('en'),
-    filePath: path.resolve(dirname, './media/home/hero-m.webp'),
+    filePath: path.resolve(dirname, './media/home/hero/hero-m.webp'),
     req,
   })
 
@@ -107,7 +107,7 @@ export const seed = async ({
     id: imageHeroMobile.id,
     data: image('es'),
     locale: 'es',
-    filePath: path.resolve(dirname, './media/home/hero-m.webp'),
+    filePath: path.resolve(dirname, './media/home/hero/hero-m.webp'),
     req,
   })
 
@@ -115,7 +115,7 @@ export const seed = async ({
     collection: 'media',
     locale: 'en',
     data: image('en'),
-    filePath: path.resolve(dirname, './media/home/form.webp'),
+    filePath: path.resolve(dirname, './media/home/form/form.webp'),
     req,
   })
 
@@ -124,7 +124,7 @@ export const seed = async ({
     id: imageFormDesktop.id,
     data: image('es'),
     locale: 'es',
-    filePath: path.resolve(dirname, './media/home/form.webp'),
+    filePath: path.resolve(dirname, './media/home/form/form.webp'),
     req,
   })
 
@@ -132,7 +132,7 @@ export const seed = async ({
     collection: 'media',
     locale: 'en',
     data: image('en'),
-    filePath: path.resolve(dirname, './media/home/form-m.webp'),
+    filePath: path.resolve(dirname, './media/home/form/form-m.webp'),
     req,
   })
 
@@ -141,22 +141,135 @@ export const seed = async ({
     id: imageFormMobile.id,
     data: image('es'),
     locale: 'es',
-    filePath: path.resolve(dirname, './media/home/form-m.webp'),
+    filePath: path.resolve(dirname, './media/home/form/form-m.webp'),
     req,
   })
 
+  const imageCarousel1 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/1.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel1.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/1.webp'),
+    req,
+  })
+
+  const imageCarousel2 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/2.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel2.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/2.webp'),
+    req,
+  })
+
+  const imageCarousel3 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/3.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel3.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/3.webp'),
+    req,
+  })
+
+  const imageCarousel4 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/4.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel4.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/4.webp'),
+    req,
+  })
+
+  const imageCarousel5 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/1.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel5.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/1.webp'),
+    req,
+  })
+
+  const imageCarousel6 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/carousel/2.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageCarousel6.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/carousel/2.webp'),
+    req,
+  })
 
 
   let imageHeroDesktopID: number | string = imageHeroDesktop.id
   let imageHeroMobileID: number | string = imageHeroMobile.id
   let imageFormDesktopID: number | string = imageFormDesktop.id
   let imageFormMobileID: number | string = imageFormMobile.id
+  let imageCarousel1ID: number | string = imageCarousel1.id
+  let imageCarousel2ID: number | string = imageCarousel2.id
+  let imageCarousel3ID: number | string = imageCarousel3.id
+  let imageCarousel4ID: number | string = imageCarousel4.id
+  let imageCarousel5ID: number | string = imageCarousel5.id
+  let imageCarousel6ID: number | string = imageCarousel6.id
 
   if (payload.db.defaultIDType === 'text') {
     imageHeroDesktopID = `"${imageHeroDesktop.id}"`
     imageHeroMobileID = `"${imageHeroMobile.id}"`
     imageFormDesktopID = `"${imageFormDesktop.id}"`
     imageFormMobileID = `"${imageFormMobile.id}"`
+    imageCarousel1ID = `"${imageCarousel1.id}"`
+    imageCarousel2ID = `"${imageCarousel2.id}"`
+    imageCarousel3ID = `"${imageCarousel3.id}"`
+    imageCarousel4ID = `"${imageCarousel4.id}"`
+    imageCarousel5ID = `"${imageCarousel5.id}"`
+    imageCarousel6ID = `"${imageCarousel6.id}"`
   }
   // #endregion
 
@@ -259,6 +372,12 @@ export const seed = async ({
         .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
         .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
         .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
+        .replace(/"\{\{IMAGE_CAROUSEL_1\}\}"/g, String(imageCarousel1ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_2\}\}"/g, String(imageCarousel2ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_3\}\}"/g, String(imageCarousel3ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_4\}\}"/g, String(imageCarousel4ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_5\}\}"/g, String(imageCarousel5ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_6\}\}"/g, String(imageCarousel6ID))
     ),
     req,
   })
@@ -275,6 +394,12 @@ export const seed = async ({
         .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
         .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
         .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
+        .replace(/"\{\{IMAGE_CAROUSEL_1\}\}"/g, String(imageCarousel1ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_2\}\}"/g, String(imageCarousel2ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_3\}\}"/g, String(imageCarousel3ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_4\}\}"/g, String(imageCarousel4ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_5\}\}"/g, String(imageCarousel5ID))
+        .replace(/"\{\{IMAGE_CAROUSEL_6\}\}"/g, String(imageCarousel6ID))
     ),
     req,
   })
