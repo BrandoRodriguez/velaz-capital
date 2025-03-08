@@ -184,7 +184,7 @@ export interface Page {
         }[]
       | null;
   };
-  layout: (FormBlock | ContentBlock)[];
+  layout: (FormBlock | ContentBlock | ArchiveBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -430,8 +430,23 @@ export interface Form {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
-  type: 'none' | 'carousel';
+  type: 'none' | 'carousel' | 'information';
   richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  informationRichText?: {
     root: {
       type: string;
       children: {
@@ -482,6 +497,50 @@ export interface ContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock".
+ */
+export interface ArchiveBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  relationTo?: 'properties' | null;
+  categories?: (number | Category)[] | null;
+  limit?: number | null;
+  selectedDocs?:
+    | {
+        relationTo: 'properties';
+        value: number | Property;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'archiveBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "properties".
  */
 export interface Property {
@@ -525,16 +584,6 @@ export interface Property {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: number;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -713,6 +762,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         formBlock?: T | FormBlockSelect<T>;
         contentBlock?: T | ContentBlockSelect<T>;
+        archiveBlock?: T | ArchiveBlockSelect<T>;
       };
   meta?:
     | T
@@ -753,6 +803,7 @@ export interface FormBlockSelect<T extends boolean = true> {
 export interface ContentBlockSelect<T extends boolean = true> {
   type?: T;
   richText?: T;
+  informationRichText?: T;
   links?:
     | T
     | {
@@ -776,6 +827,20 @@ export interface ContentBlockSelect<T extends boolean = true> {
         media?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock_select".
+ */
+export interface ArchiveBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  populateBy?: T;
+  relationTo?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
   id?: T;
   blockName?: T;
 }

@@ -27,6 +27,10 @@ const ContentBlock: Block = {
      label: 'Carousel',
      value: 'carousel',
     },
+    {
+     label: 'Information',
+     value: 'information',
+    },
    ],
    required: true,
   },
@@ -46,6 +50,25 @@ const ContentBlock: Block = {
    }),
    label: false,
   },
+  {
+   name: 'informationRichText',
+   type: 'richText',
+   localized: true,
+   editor: lexicalEditor({
+    features: ({ rootFeatures }) => {
+     return [
+      ...rootFeatures,
+      HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+      FixedToolbarFeature(),
+      InlineToolbarFeature(),
+     ]
+    },
+   }),
+   admin: {
+    condition: (_, { type } = {}) => ['information'].includes(type),
+   },
+   label: false,
+  },
   linkGroup({
    overrides: {
     maxRows: 2,
@@ -59,7 +82,7 @@ const ContentBlock: Block = {
     components: {
      RowLabel: '@/payload/components/row-label',
     },
-    condition: (_, { type } = {}) => ['carousel'].includes(type),
+    condition: (_, { type } = {}) => ['carousel', 'information'].includes(type),
    },
    fields: [
     {

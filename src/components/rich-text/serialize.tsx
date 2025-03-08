@@ -7,6 +7,8 @@ import { CMSLink } from '@/components/ui/link'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import type { BannerBlock as BannerBlockProps } from '@/payload-types'
 
+import { Media } from '@/components/ui/media'
+
 import Image from 'next/image'
 
 import {
@@ -19,6 +21,7 @@ import {
   IS_UNDERLINE,
 } from './nodeFormat'
 import type { Page } from '@/payload-types'
+import { Check } from 'lucide-react'
 
 export type NodeTypes =
 
@@ -211,11 +214,15 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
         //   }
         // }
         switch (node.type) {
-          // case 'upload': {
-          //   return (
-          //     <Image key={index} src={node?.value?.url} alt={node?.value?.alt} />
-          //   )
-          // }
+          case 'upload': {
+            return (
+              <Media
+                key={index}
+                //@ts-ignore
+                resource={node?.value ?? ''}
+              />
+            )
+          }
           case 'linebreak': {
             return <br className="col-start-2" key={index} />
           }
@@ -259,8 +266,13 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
               )
             } else {
               return (
-                <li key={index} value={node?.value}>
-                  {serializedChildren}
+                <li key={index} value={node?.value} className="flex items-start gap-2">
+                  <div className='mt-1'>
+                    <Check className="h-4 w-4 text-white bg-[#03AB9E] rounded-full p-1 mt-1" />
+                  </div>
+                  <div>
+                    {serializedChildren}
+                  </div>
                 </li>
               )
             }

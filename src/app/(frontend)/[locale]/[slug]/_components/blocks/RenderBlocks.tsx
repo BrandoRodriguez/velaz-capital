@@ -1,32 +1,21 @@
-import { cn } from '@/utils/cn'
 import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-// import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-// import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-// import { ContentBlock } from '@/blocks/Content/Component'
-
-// import { MediaBlock } from '@/blocks/MediaBlock/Component'
-
 import FormBlock from './form/FormBlock'
 import ContentBlock from './content/RenderContent'
+import ArchiveBlock from './archive/ArchiveBlock'
 
 import { TypedLocale } from 'payload'
 
-// const blockComponents = {
-//   // archive: ArchiveBlock,
-//   // content: ContentBlock,
-//   // cta: CallToActionBlock,
-//   // mediaBlock: MediaBlock,
-//   formBlock: FormBlock,
-//   contentBlock: ContentBlock,
-// }
-
-const blockComponents: Record<string, React.FC<any>> = {
+const blockComponents = {
+  // archive: ArchiveBlock,
+  // content: ContentBlock,
+  // cta: CallToActionBlock,
+  // mediaBlock: MediaBlock,
   formBlock: FormBlock,
   contentBlock: ContentBlock,
-  // Add other block types here
+  archiveBlock: ArchiveBlock
 }
 
 const RenderBlocks: React.FC<{
@@ -50,6 +39,7 @@ const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
+                // @ts-ignore
                 <Block {...block} locale={locale} key={index} />
               )
             }

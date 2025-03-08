@@ -13,7 +13,6 @@ import {
  CarouselNext,
  CarouselPrevious,
 } from "@/components/ui/carousel";
-// import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from 'embla-carousel-auto-scroll'
 
 export const CarouselContent: React.FC<ContentBlock> = ({ richText, links, images }) => {
@@ -22,13 +21,14 @@ export const CarouselContent: React.FC<ContentBlock> = ({ richText, links, image
 
  const plugin = React.useRef(AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnFocusIn: false, stopOnMouseEnter: false }));
 
+ console.log(richText, "richText")
 
  return (
   <section className="contentBlock relative py-10 md:py-20">
    <div className='flex flex-col gap-12'>
     <div className="container mx-auto">
      <div className='flex flex-col justify-center items-center gap-8'>
-      {richText && <RichText className='sm:text-center flex flex-col gap-6 justify-center sm:items-center' content={richText} enableGutter={false} />}
+      {richText && <RichText className='sm:text-center flex flex-col  justify-center sm:items-center img-hidden' content={richText} enableGutter={false} />}
       {Array.isArray(links) && links.length > 0 && (
        <ul className="flex gap-4 max-sm:w-full">
         {links.map(({ link }, i) => {

@@ -17,6 +17,7 @@ import { revalidatePage } from './hooks/revalidatePage'
 import Hero from './blocks/hero'
 import FormBlock from './blocks/form'
 import ContentBlock from './blocks/content'
+import ArchiveBlock from './blocks/archive'
 
 import {
   MetaDescriptionField,
@@ -79,7 +80,7 @@ const Pages: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               localized: true,
-              blocks: [FormBlock, ContentBlock],
+              blocks: [FormBlock, ContentBlock, ArchiveBlock],
               required: true,
             },
           ],

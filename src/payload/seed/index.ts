@@ -10,6 +10,11 @@ import home from './pages/home'
 //blocks
 import { formOne, formTwo } from './pages/blocks/forms'
 
+//properties
+import { property1, property1_es } from './pages/properties/property-1'
+import { property2, property2_es } from './pages/properties/property-2'
+import { property3, property3_es } from './pages/properties/property-3'
+
 //media
 import image from './media/image'
 
@@ -73,6 +78,31 @@ export const seed = async ({
     req,
   })
 
+  // #region Users
+  payload.logger.info(`— Seeding demo author and user...`)
+
+  await payload.delete({
+    collection: 'users',
+    where: {
+      email: {
+        equals: 'admin@investvelazcapital.com',
+      },
+    },
+    req,
+  })
+
+  const demoAuthor = await payload.create({
+    collection: 'users',
+    data: {
+      name: 'Admin',
+      email: 'admin@investvelazcapital.com',
+      password: 'admin',
+    },
+    req,
+  })
+
+  let demoAuthorID: number | string = demoAuthor.id
+  // #endregion
 
   // #region Media
   payload.logger.info(`— Seeding media...`)
@@ -247,11 +277,82 @@ export const seed = async ({
     req,
   })
 
+  const imageProperty1 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/properties/1.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageProperty1.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/properties/1.webp'),
+    req,
+  })
+
+  const imageProperty2 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/properties/2.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageProperty2.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/properties/2.webp'),
+    req,
+  })
+
+  const imageProperty3 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/properties/3.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageProperty3.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/properties/3.webp'),
+    req,
+  })
+
+  const imageInformation1 = await payload.create({
+    collection: 'media',
+    locale: 'en',
+    data: image('en'),
+    filePath: path.resolve(dirname, './media/home/information/1.webp'),
+    req,
+  })
+
+  await payload.update({
+    collection: 'media',
+    id: imageInformation1.id,
+    data: image('es'),
+    locale: 'es',
+    filePath: path.resolve(dirname, './media/home/information/1.webp'),
+    req,
+  })
+
+
 
   let imageHeroDesktopID: number | string = imageHeroDesktop.id
   let imageHeroMobileID: number | string = imageHeroMobile.id
+
   let imageFormDesktopID: number | string = imageFormDesktop.id
   let imageFormMobileID: number | string = imageFormMobile.id
+
   let imageCarousel1ID: number | string = imageCarousel1.id
   let imageCarousel2ID: number | string = imageCarousel2.id
   let imageCarousel3ID: number | string = imageCarousel3.id
@@ -259,17 +360,33 @@ export const seed = async ({
   let imageCarousel5ID: number | string = imageCarousel5.id
   let imageCarousel6ID: number | string = imageCarousel6.id
 
+  let imageProperty1ID: number | string = imageProperty1.id
+  let imageProperty2ID: number | string = imageProperty2.id
+  let imageProperty3ID: number | string = imageProperty3.id
+
+  let imageInformation1ID: number | string = imageInformation1.id
+
+
   if (payload.db.defaultIDType === 'text') {
+
     imageHeroDesktopID = `"${imageHeroDesktop.id}"`
     imageHeroMobileID = `"${imageHeroMobile.id}"`
+
     imageFormDesktopID = `"${imageFormDesktop.id}"`
     imageFormMobileID = `"${imageFormMobile.id}"`
+
     imageCarousel1ID = `"${imageCarousel1.id}"`
     imageCarousel2ID = `"${imageCarousel2.id}"`
     imageCarousel3ID = `"${imageCarousel3.id}"`
     imageCarousel4ID = `"${imageCarousel4.id}"`
     imageCarousel5ID = `"${imageCarousel5.id}"`
     imageCarousel6ID = `"${imageCarousel6.id}"`
+
+    imageProperty1ID = `"${imageProperty1.id}"`
+    imageProperty2ID = `"${imageProperty2.id}"`
+    imageProperty3ID = `"${imageProperty3.id}"`
+
+    imageInformation1ID = `"${imageInformation1.id}"`
   }
   // #endregion
 
@@ -368,16 +485,23 @@ export const seed = async ({
       JSON.stringify(home('en'))
         .replace(/"\{\{IMAGE_HERO_DESKTOP\}\}"/g, String(imageHeroDesktopID))
         .replace(/"\{\{IMAGE_HERO_MOBILE\}\}"/g, String(imageHeroMobileID))
+
         .replace(/"\{\{IMAGE_FORM_DESKTOP\}\}"/g, String(imageFormDesktopID))
         .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
+
         .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
         .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
+
         .replace(/"\{\{IMAGE_CAROUSEL_1\}\}"/g, String(imageCarousel1ID))
         .replace(/"\{\{IMAGE_CAROUSEL_2\}\}"/g, String(imageCarousel2ID))
         .replace(/"\{\{IMAGE_CAROUSEL_3\}\}"/g, String(imageCarousel3ID))
         .replace(/"\{\{IMAGE_CAROUSEL_4\}\}"/g, String(imageCarousel4ID))
         .replace(/"\{\{IMAGE_CAROUSEL_5\}\}"/g, String(imageCarousel5ID))
         .replace(/"\{\{IMAGE_CAROUSEL_6\}\}"/g, String(imageCarousel6ID))
+
+
+        .replace(/"\{\{IMAGE_INFORMATION_1\}\}"/g, String(imageInformation1ID))
+
     ),
     req,
   })
@@ -390,20 +514,117 @@ export const seed = async ({
       JSON.stringify(home('es'))
         .replace(/"\{\{IMAGE_HERO_DESKTOP\}\}"/g, String(imageHeroDesktopID))
         .replace(/"\{\{IMAGE_HERO_MOBILE\}\}"/g, String(imageHeroMobileID))
+
         .replace(/"\{\{IMAGE_FORM_DESKTOP\}\}"/g, String(imageFormDesktopID))
         .replace(/"\{\{IMAGE_FORM_MOBILE\}\}"/g, String(imageFormMobileID))
+
         .replace(/"\{\{CONTACT_FORM_ONE_ID\}\}"/g, String(formOneID))
         .replace(/"\{\{CONTACT_FORM_TWO_ID\}\}"/g, String(formTwoID))
+
         .replace(/"\{\{IMAGE_CAROUSEL_1\}\}"/g, String(imageCarousel1ID))
         .replace(/"\{\{IMAGE_CAROUSEL_2\}\}"/g, String(imageCarousel2ID))
         .replace(/"\{\{IMAGE_CAROUSEL_3\}\}"/g, String(imageCarousel3ID))
         .replace(/"\{\{IMAGE_CAROUSEL_4\}\}"/g, String(imageCarousel4ID))
         .replace(/"\{\{IMAGE_CAROUSEL_5\}\}"/g, String(imageCarousel5ID))
         .replace(/"\{\{IMAGE_CAROUSEL_6\}\}"/g, String(imageCarousel6ID))
+
+        .replace(/"\{\{IMAGE_INFORMATION_1\}\}"/g, String(imageInformation1ID))
+
+
     ),
     req,
   })
 
+  // #region Categories
+  payload.logger.info(`— Seeding categories...`)
+  const technologyCategory = await payload.create({
+    collection: 'categories',
+    locale: 'en',
+    data: {
+      title: 'Technology',
+    },
+    req,
+  })
+  await payload.update({
+    collection: 'categories',
+    id: technologyCategory.id,
+    locale: 'es',
+    data: {
+      title: 'Tecnología',
+    },
+    req,
+  })
+  // #endregion
+
+  // #region Properties
+  payload.logger.info(`— Seeding properties...`)
+
+  const property1Doc = await payload.create({
+    collection: 'properties',
+    data: JSON.parse(
+      JSON.stringify({ ...property1, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_1\}\}"/g, String(imageProperty1ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'en',
+    req,
+  })
+  await payload.update({
+    collection: 'properties',
+    id: property1Doc.id,
+    data: JSON.parse(
+      JSON.stringify({ ...property1_es, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_1\}\}"/g, String(imageProperty1ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'es',
+    req,
+  })
+
+  const property2Doc = await payload.create({
+    collection: 'properties',
+    data: JSON.parse(
+      JSON.stringify({ ...property2, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_2\}\}"/g, String(imageProperty2ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'en',
+    req,
+  })
+  await payload.update({
+    collection: 'properties',
+    id: property2Doc.id,
+    data: JSON.parse(
+      JSON.stringify({ ...property2_es, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_2\}\}"/g, String(imageProperty2ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'es',
+    req,
+  })
+
+  const property3Doc = await payload.create({
+    collection: 'properties',
+    data: JSON.parse(
+      JSON.stringify({ ...property3, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_3\}\}"/g, String(imageProperty3ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'en',
+    req,
+  })
+  await payload.update({
+    collection: 'properties',
+    id: property3Doc.id,
+    data: JSON.parse(
+      JSON.stringify({ ...property3_es, categories: [technologyCategory.id] })
+        .replace(/"\{\{IMAGE_PROPERTY_3\}\}"/g, String(imageProperty3ID))
+        .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
+    ),
+    locale: 'es',
+    req,
+  })
+  // #endregion
 
   // #region Globals
   payload.logger.info(`— Seeding header...`)

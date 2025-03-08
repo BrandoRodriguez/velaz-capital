@@ -2,10 +2,11 @@ import React from 'react'
 
 import type { ContentBlock } from '@/payload-types'
 
-import { CarouselContent } from './variants'
+import { CarouselContent, InformationContent } from './variants'
 
 const content = {
-  carousel: CarouselContent
+  carousel: CarouselContent,
+  information: InformationContent
 }
 
 const RenderContentBlock: React.FC<ContentBlock> = (props) => {
