@@ -78,6 +78,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const { slug = '', locale = 'en' } = await paramsPromise
   const property = await queryProperty({ slug, locale })
 
+  // @ts-ignore
   return generateMeta({ doc: property })
 }
 
