@@ -67,14 +67,14 @@ const ArchiveBlock: React.FC<
   }
 
   return (
-    <section className="archiveBlock relative py-10 md:py-20 max-sm:bg-[#e9e1d8]" id={`block-${id}`}>
+    <section className="archiveBlock relative py-10 md:py-20 max-sm:bg-[#f0e4d5]" id={`block-${id}`}>
       <div className="container mx-auto">
         <div className='flex flex-col justify-center items-center gap-8'>
           {introContent && <RichText className='sm:text-center flex flex-col justify-center sm:items-center img-hidden' content={introContent} enableGutter={false} />}
         </div>
         <CollectionArchive properties={properties} />
       </div>
-      <div className='max-sm:hidden absolute top-0 left-0 w-full h-[30rem] lg:h-[50rem] bg-[#e9e1d8] -z-10'>
+      <div className='max-sm:hidden absolute top-0 left-0 w-full h-[30rem] lg:h-[50rem] bg-[#f0e4d5] -z-10'>
       </div>
     </section>
   )
