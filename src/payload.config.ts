@@ -61,6 +61,8 @@ export default buildConfig({
   },
   collections: [Pages, Properties, Categories, Media, Users],
   globals: [Header, Footer],
+  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
+  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({
@@ -82,6 +84,4 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
 })
