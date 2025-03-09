@@ -15,7 +15,7 @@ export const InformationContent: React.FC<ContentBlock> = ({ richText, informati
  const mediaDesktop = images?.find(image => image.label === 'Desktop')?.media;
 
  return (
-  <section className="contentBlock relative max-sm:py-10 md:pt-20">
+  <section className="contentBlock relative max-sm:py-10 md:pt-20" id='we-offer'>
    <div className='flex flex-col gap-8 lg:gap-12'>
     <div className="container mx-auto">
      <div className='flex flex-col justify-center items-center gap-8'>

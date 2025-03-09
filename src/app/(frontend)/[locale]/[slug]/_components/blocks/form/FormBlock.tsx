@@ -60,7 +60,7 @@ const FormBlock: React.FC<
   const mediaMobile = images?.find(image => image.label === 'Mobile')?.media;
 
   return (
-    <section className="formBlock relative">
+    <section className="formBlock relative" id='contact'>
       <div className="container mx-auto z-10 pt-10 md:pt-24">
         <div className='grid md:grid-cols-2 max-md:gap-8 items-center'>
           {enableIntro && introContent && (

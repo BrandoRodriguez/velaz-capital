@@ -70,7 +70,7 @@ export default async function RootLayout({ children, params }: Args) {
 
   return (
     <html
-      className={cn(marcellus.variable, dm_sans.variable, dm_sans.className)}
+      className={cn(marcellus.variable, dm_sans.variable, dm_sans.className, "scroll-smooth md:scroll-auto")}
       lang={locale}
       dir={direction}
       suppressHydrationWarning

@@ -21,10 +21,8 @@ export const CarouselContent: React.FC<ContentBlock> = ({ richText, links, image
 
  const plugin = React.useRef(AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnFocusIn: false, stopOnMouseEnter: false }));
 
- console.log(richText, "richText")
-
  return (
-  <section className="contentBlock relative py-10 md:py-20">
+  <section className="contentBlock relative py-10 md:py-20" id='about'>
    <div className='flex flex-col gap-12'>
     <div className="container mx-auto">
      <div className='flex flex-col justify-center items-center gap-8'>

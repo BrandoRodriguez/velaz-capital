@@ -37,14 +37,14 @@ export const Card: React.FC<{
       ref={card.ref}
     >
       <div className="relative w-full">
-        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} fill className='relative h-0 pb-[151.28%] cover' />}
+        {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} fill className='relative h-0 pb-[130%] lg:pb-[151.28%] cover' />}
       </div>
       <div className="flex flex-col gap-4 mt-4 md:pt-6">
         <h3 className="font-marcellus md:text-center text-3xl lg:text-4xl">
           {titleToUse}
         </h3>
         <p className='font-dm-sans md:text-center !text-base'>{sanitizedDescription}</p>
-        <Link className="not-prose font-marcellus text-lg md:text-center underline underline-offset-4"
+        <Link className="not-prose font-marcellus text-base md:text-lg md:text-center underline underline-offset-4"
           style={{
             textDecorationColor: "#EED26E"
           }}

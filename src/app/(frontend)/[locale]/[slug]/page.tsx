@@ -12,8 +12,6 @@ import type { Page as PageType } from '@/payload-types'
 import { TypedLocale } from 'payload'
 
 
-// import { RenderHero } from '@/heros/RenderHero'
-
 //payload
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'

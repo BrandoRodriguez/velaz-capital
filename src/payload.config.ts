@@ -47,7 +47,7 @@ export default buildConfig({
       graphics: {
         Logo: '@/payload/components/graphics/logo',
       },
-      afterDashboard: ['@/payload/components/after-dashboard'],
+      // afterDashboard: ['@/payload/components/after-dashboard'],
     },
     user: Users.slug,
     importMap: {
