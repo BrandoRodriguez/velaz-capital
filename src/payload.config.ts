@@ -57,6 +57,7 @@ export default buildConfig({
       title: 'Dashboard',
       titleSuffix: '- Velaz Capital',
       description: 'Velaz Capital'
+      
     },
   },
   collections: [Pages, Properties, Categories, Media, Users],
