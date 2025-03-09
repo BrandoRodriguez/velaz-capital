@@ -35,7 +35,7 @@ export const Select: React.FC<
      return (
       <SelectComponent onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
        <SelectTrigger
-        className="w-full"
+        className="w-full text-start"
         id={name}
         radius='none'
         size='lg'

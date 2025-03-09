@@ -46,7 +46,7 @@ export const inputVariants = cva(
       size: {
         sm: "h-8 text-xs read-only:leading-8",
         md: "h-9 text-xs read-only:leading-9",
-        lg: "h-10 text-sm read-only:leading-10",
+        lg: "h-10 text-xs sm:text-sm read-only:leading-10",
         xl: "h-12 text-base read-only:leading-[48px]",
       },
     },
