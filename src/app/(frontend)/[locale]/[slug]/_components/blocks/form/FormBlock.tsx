@@ -75,7 +75,6 @@ const FormBlock: React.FC<
         <Media
           fill
           imgClassName="-z-10 object-cover bg-top"
-          priority
           resource={sm ? mediaDesktop ?? '' : mediaMobile ?? ''}
         />
       </React.Fragment>
