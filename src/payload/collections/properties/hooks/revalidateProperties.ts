@@ -7,21 +7,22 @@ import type { Property } from '@/payload-types'
 export const revalidateProperty: CollectionAfterChangeHook<Property> = ({
   doc,
   previousDoc,
-  req: { payload },
+  req: { payload, i18n },
 }) => {
+  const locale = i18n.language
   if (doc._status === 'published') {
-    const path = `/properties/${doc.slug}`
+    const path = `/${locale}/properties/${doc.slug}`
 
-    payload.logger.info(`Revalidating properties at path: ${path}`)
+    payload.logger.info(`Revalidating property at path: ${path}`)
 
     revalidatePath(path)
   }
 
-  // If the post was previously published, we need to revalidate the old path
+  // If the property was previously published, we need to revalidate the old path
   if (previousDoc._status === 'published' && doc._status !== 'published') {
-    const oldPath = `/properties/${previousDoc.slug}`
+    const oldPath = `/${locale}/properties/${previousDoc.slug}`
 
-    payload.logger.info(`Revalidating old post at path: ${oldPath}`)
+    payload.logger.info(`Revalidating old property at path: ${oldPath}`)
 
     revalidatePath(oldPath)
   }

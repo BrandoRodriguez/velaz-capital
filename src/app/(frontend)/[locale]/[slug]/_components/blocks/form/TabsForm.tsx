@@ -35,10 +35,8 @@ export interface Data {
 }
 
 const Form = (props) => {
-
-
   const {
-    fields: formFromProps, id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel, title
+    fields: formFromProps, id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel
   } = props
 
 
@@ -57,6 +55,7 @@ const Form = (props) => {
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
   const router = useRouter()
+
   const t = useTranslations()
 
   const onSubmit = useCallback(
@@ -187,23 +186,30 @@ const Form = (props) => {
 
 const TabsForm = ({ form }) => {
 
-  const title = form[0].title
+  const t = useTranslations()
+
+  const updatedForm = form.map((item, index) => ({
+    ...item,
+    label: index === 0 ? t('form-title-one') : t('form-title-two'),
+  }));
+
+  const id = updatedForm[0].id
 
   return (
-    <Tabs defaultValue={title} className="w-full md:w-[480px]">
+    <Tabs defaultValue={id} className="w-full md:w-[480px]">
       <TabsList className="grid w-full grid-cols-2 rounded-none p-0 h-11 bg-[#FFFFFF33]">
         {
-          form.map((item) => {
+          updatedForm.map((item) => {
             return (
-              <TabsTrigger key={item.id} value={item.title} className='data-[state=active]:bg-primary data-[state=active]:text-black bg-transparent text-white uppercase font-semibold rounded-none hover:bg-primary/90 hover:text-black h-11 cursor-pointer text-sm'>{item.title}</TabsTrigger>
+              <TabsTrigger key={item.id} value={item.id} className='data-[state=active]:bg-primary data-[state=active]:text-black bg-transparent text-white uppercase font-semibold rounded-none hover:bg-primary/90 hover:text-black h-11 cursor-pointer text-sm'>{item.label}</TabsTrigger>
             )
           })
         }
       </TabsList>
       {
-        form.map((item) => {
+        updatedForm.map((item) => {
           return (
-            <TabsContent key={item.id} value={item.title} className='bg-[#FFFFFF33] p-4 md:p-6 mt-0'>
+            <TabsContent key={item.id} value={item.id} className='bg-[#FFFFFF33] p-4 md:p-6 mt-0'>
               <Form {...item} />
             </TabsContent>
           )

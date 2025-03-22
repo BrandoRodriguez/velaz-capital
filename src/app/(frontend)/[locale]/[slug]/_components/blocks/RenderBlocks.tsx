@@ -14,8 +14,8 @@ const blockComponents = {
   // cta: CallToActionBlock,
   // mediaBlock: MediaBlock,
   formBlock: FormBlock,
-  contentBlock: ContentBlock,
-  archiveBlock: ArchiveBlock
+  // contentBlock: ContentBlock,
+  // archiveBlock: ArchiveBlock
 }
 
 const RenderBlocks: React.FC<{

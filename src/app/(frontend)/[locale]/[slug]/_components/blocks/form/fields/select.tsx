@@ -42,7 +42,7 @@ export const Select: React.FC<
        >
         <SelectValue placeholder={label} />
        </SelectTrigger>
-       <SelectContent>
+       <SelectContent className="border-none">
         {options.map(({ label, value }) => {
          return (
           <SelectItem key={value} value={value}>

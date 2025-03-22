@@ -20,7 +20,7 @@ import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects'
 
 
 const generateTitle: GenerateTitle<Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title}` : ''
 }
 
 const generateURL: GenerateURL<Page> = ({ doc }) => {
@@ -36,6 +36,7 @@ const plugins: Plugin[] = [
     generateURL,
   }),
   formBuilderPlugin({
+
     fields: {
       payment: false,
     },

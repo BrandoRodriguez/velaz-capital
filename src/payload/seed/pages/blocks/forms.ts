@@ -102,8 +102,8 @@ const formOne = (locale: 'en' | 'es'): Partial<Form> => ({
       width: 100,
     },
     {
-      name: 'select',
-      blockName: 'select',
+      name: 'select-day',
+      blockName: 'select-day',
       blockType: 'select',
       label: locale === 'en' ? 'Select call day' : 'Selecciona día de llamada',
       required: false,
@@ -111,17 +111,37 @@ const formOne = (locale: 'en' | 'es'): Partial<Form> => ({
       options: [
         {
           value: '1',
-          label: locale === 'en' ? 'option 1' : 'opcion 1',
+          label: locale === 'en' ? 'Monday' : 'Lunes',
         },
         {
           value: '2',
-          label: locale === 'en' ? 'option 3' : 'opcion 4',
+          label: locale === 'en' ? 'Tuesday' : 'Martes',
+        },
+        {
+          value: '3',
+          label: locale === 'en' ? 'Wednesday' : 'Miercoles',
+        },
+        {
+          value: '4',
+          label: locale === 'en' ? 'Thursday' : 'Jueves',
+        },
+        {
+          value: '5',
+          label: locale === 'en' ? 'Friday' : 'Viernes',
+        },
+        {
+          value: '6',
+          label: locale === 'en' ? 'Saturday' : 'Sabado',
+        },
+        {
+          value: '7',
+          label: locale === 'en' ? 'Sunday' : 'Domingo',
         },
       ],
     },
     {
-      name: 'select',
-      blockName: 'select',
+      name: 'select-time',
+      blockName: 'select-time',
       blockType: 'select',
       label: locale === 'en' ? 'Select call time' : 'Selecciona hora de llamada',
       required: false,
@@ -129,11 +149,15 @@ const formOne = (locale: 'en' | 'es'): Partial<Form> => ({
       options: [
         {
           value: '1',
-          label: locale === 'en' ? 'option 1' : 'opcion 1',
+          label: locale === 'en' ? '8:00' : '8:00',
         },
         {
           value: '2',
-          label: locale === 'en' ? 'option 2' : 'opcion 2',
+          label: locale === 'en' ? '9:00' : '9:00',
+        },
+        {
+          value: '3',
+          label: locale === 'en' ? '10:00' : '10:00',
         },
       ],
     },
@@ -254,8 +278,8 @@ const formTwo = (locale: 'en' | 'es'): Partial<Form> => ({
       width: 100,
     },
     {
-      name: 'select',
-      blockName: 'select',
+      name: 'select-type',
+      blockName: 'select-type',
       blockType: 'select',
       label: locale === 'en' ? 'Type of property' : 'Tipo de propiedad',
       required: true,
