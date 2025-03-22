@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 //pages
 import home from './pages/home'
 
+
 //blocks
 import { formOne, formTwo } from './pages/blocks/forms'
 
@@ -715,6 +716,7 @@ export const seed = async ({
           },
         },
         {
+          id: header.navItems![1].id,
           link: {
             type: 'custom',
             label: 'Propiedades',
@@ -723,6 +725,7 @@ export const seed = async ({
           },
         },
         {
+          id: header.navItems![2].id,
           link: {
             type: 'custom',
             label: 'Nosotros',
@@ -731,6 +734,7 @@ export const seed = async ({
           },
         },
         {
+          id: header.navItems![3].id,
           link: {
             type: 'custom',
             label: 'Ofrecemos',
@@ -739,6 +743,7 @@ export const seed = async ({
           },
         },
         {
+          id: header.navItems![4].id,
           link: {
             type: 'custom',
             label: 'Contacto',
@@ -761,6 +766,7 @@ export const seed = async ({
       ],
       buttonItems: [
         {
+          id: header.buttonItems![0].id,
           link: {
             type: 'custom',
             label: 'Agenda una cita',
@@ -773,6 +779,7 @@ export const seed = async ({
     },
     req,
   })
+
 
   // payload.logger.info(`— Seeding footer...`)
 

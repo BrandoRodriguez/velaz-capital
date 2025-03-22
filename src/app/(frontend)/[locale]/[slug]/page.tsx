@@ -23,8 +23,7 @@ import RenderBlocks from './_components/blocks/RenderBlocks'
 //ui
 import { Button } from '@/components/ui/button'
 
-// import { PayloadRedirects } from '@/components/PayloadRedirects'
-
+import { PayloadRedirects } from '@/payload/components/payload-redirects'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -53,6 +52,9 @@ type Args = {
   }>
 }
 
+
+
+
 export default async function Page({ params: paramsPromise }: Args) {
 
   const { slug = 'home', locale = 'en' } = await paramsPromise
@@ -66,9 +68,9 @@ export default async function Page({ params: paramsPromise }: Args) {
     locale,
   })
 
-  // if (!page) {
-  //   return <PayloadRedirects url={url} />
-  // }
+  if (!page) {
+    return <PayloadRedirects url={url} />
+  }
 
   const { hero, layout } = page
 
@@ -79,7 +81,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {/* <PayloadRedirects disableNotFound url={url} /> */}
 
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout ?? []} locale={locale} />
+      {/* <RenderBlocks blocks={layout ?? []} locale={locale} /> */}
     </main>
   )
 }

@@ -138,3 +138,4 @@ const Pages: CollectionConfig = {
   },
 }
 export default Pages
+
