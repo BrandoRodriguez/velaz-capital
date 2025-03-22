@@ -52,7 +52,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
     >
       <div className='relative container mx-auto py-6 sm:py-8'>
         <div className='flex justify-between items-center'>
-          <Link href="/">
+          <Link href="/" aria-label="Logo">
             <Logo />
           </Link>
 
@@ -93,7 +93,7 @@ function LocaleSwitcher() {
 
   return (
     <Select onValueChange={onSelectChange} value={locale}>
-      <SelectTrigger className="w-auto px-0 !text-sm text-white !bg-transparent gap-2 pl-0 md:pl-3 border-none">
+      <SelectTrigger aria-label="Locale" className="w-auto px-0 !text-sm text-white !bg-transparent gap-2 pl-0 md:pl-3 border-none">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
       <SelectContent>
