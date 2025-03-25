@@ -69,7 +69,7 @@ export const InformationContent: React.FC<ContentBlock> = ({ richText, informati
         <React.Fragment>
          <Media
           resource={mediaDesktop ?? ''}
-          imgClassName=" h-full "
+          imgClassName="h-full"
          />
         </React.Fragment>
        </div>
